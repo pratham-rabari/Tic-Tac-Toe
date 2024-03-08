@@ -1,0 +1,80 @@
+.inputbox{
+    position: absolute;
+    bottom: 0;
+    right: 21px;
+}
+.btn2{
+    background-color:  rgb(229, 109, 17);
+    width:40px;
+    height: 34px;
+}
+.input{
+    width:410px;
+    position: relative;
+    float: left;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.send{
+    color: black;
+    background-color: aquamarine;
+    width:auto;
+    height: auto;
+    position: relative; 
+    float:right;
+    margin-bottom: 6px;
+    margin-top: 6px;
+}
+
+.recieve{
+    color: black;
+    background-color: rgb(236, 232, 239);
+    width:auto;
+    height: auto;
+    position: relative;
+     float: left;
+     margin-bottom: 6px;
+     margin-top: 6px;
+}
+.chats{
+    overflow: auto;
+}
+
+.img{
+    width:25px;
+    height: 25px;
+}
+.btnx{
+    width:170px;
+    height: 55px;
+    font-size: 29px;
+    border-radius: 16px;
+}
+.btnx:hover{
+    width:200px;
+    height: 55px;
+    font-size: 30px;
+    border-radius: 16px;
+    background-color: rgb(193, 126, 11);
+}
+
+.emoji-button{
+    background-color: aqua;
+    border-radius: 50%;
+}
+.emoji-box{
+    position: absolute;
+    bottom: 45px;
+}
+
+@media screen and (max-width: 500px) {
+    .input{
+        width:330px;
+        position: relative;
+        float: left;
+        height: 40px;
+        border-radius: 20px;
+    }
+  }
+  

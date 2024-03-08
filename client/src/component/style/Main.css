@@ -1,0 +1,113 @@
+.player {
+    height: 40px;
+    width: 100px;
+    font-size: 30px;
+    padding: 3px;
+}
+
+.text {
+    height: 50px;
+    width: 220px;
+    font-size: 40px;
+}
+
+.h2h {
+    color: rgb(251, 158, 28);
+}
+
+.gamebox {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+}
+
+.gameboard {
+    width: 330px;
+    height: 310px;
+    position: relative;
+}
+
+.img {
+    width: 89px;
+    height: 85px;
+}
+
+.img2 {
+    width: 70px;
+    height: 70px;
+}
+
+.not-point {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.won {
+    background-color: rgb(229, 109, 17);
+}
+
+.bg {
+    background-color: rgb(229, 109, 17);
+}
+
+.box1 {
+    position: relative;
+}
+
+.btnn {
+    width: 100px;
+    height: 40px;
+}
+
+.h2 {
+    font-size: 90px;
+    color: rgb(229, 109, 17);
+}
+
+.btns {
+    width: 100px;
+    height: 50px;
+    font-size: 25px;
+}
+
+html,
+body {
+    height: 100%;
+    /* width: 100vw;  */
+    margin: 0;
+    padding: 0;
+    background-color: rgb(4, 4, 55);
+}
+
+.w {
+    color: rgb(229, 109, 17);
+}
+
+.color {
+    color: white;
+}
+
+.chatbox {
+    color:black;
+    height: 765px;
+    background-color: rgb(59, 44, 89);
+    box-shadow: 0px 0px 10px 6px  rgb(229, 109, 17);
+    border-radius: 12px;
+    overflow: auto;
+  }
+
+.min{
+    min-height: 100%;
+    position: relative;
+}
+
+.btnx{
+    background-color:  rgb(229, 109, 17);
+}
+
+@media screen and (max-width: 500px) {
+    .chatbox{
+      width: 100%;
+    }
+  }
+  
