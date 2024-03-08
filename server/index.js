@@ -39,10 +39,8 @@ io.on('connection', (socket) => {
         for (const i in allUsers) {
             const user = allUsers[i];
             if (user.online && !user.playing && socket.id !== i) {
-                console.log(socket.id,"cutrr")
                 oppenentplayer = user;
                 oid=i
-                console.log(i,"opposit player")
                 break;
             }
         }
@@ -79,7 +77,6 @@ io.on('connection', (socket) => {
 
      socket.on("Send-Message",(data)=>{
         socket.to(data.oppoId).emit("recive-message",{data})
-         console.log(data)
      })
 
     socket.on('disconnect', function () {

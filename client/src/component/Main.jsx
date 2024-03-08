@@ -96,7 +96,7 @@ const Main = () => {
         }
         const username = result.value;
         setPlayerName(username)
-        const newsocket = io("http://localhost:3000", {
+        const newsocket = io("https://tic-tac-toe-2-m166.onrender.com", {
             autoConnect: true,
         })
         setSocket(newsocket)
@@ -189,7 +189,7 @@ const Main = () => {
             {showChatBox? <div className='col-md-4 chatbox'>
               <Chat opponentName={oppenentName} socket={socket} oppoId={oppoId}/>
             </div>:""}
-            
+
         </div>
     )
 }
