@@ -14,8 +14,8 @@ const Main = () => {
     const [oppenentName, setOppenentName] = useState(null)
     const [playerName, setPlayerName] = useState("")
     const [playingSign, setPlayingSign] = useState('')
-    const [showChatBox,setShowChatBox]= useState(true)
-    const[oppoId,setOppoId]=useState("")
+    const [showChatBox, setShowChatBox] = useState(true)
+    const [oppoId, setOppoId] = useState("")
 
     const renderFrom = [
         [1, 2, 3],
@@ -96,13 +96,13 @@ const Main = () => {
         }
         const username = result.value;
         setPlayerName(username)
-        // https://tic-tac-toe-2-m166.onrender.com
-        const newsocket = io("http://localhost:3000/", {
+
+        const newsocket = io("https://tic-tac-toe-2-m166.onrender.com", {
             autoConnect: true,
         })
         setSocket(newsocket)
         newsocket?.emit("request-to-play", {
-            username,socket
+            username, socket
         })
     }
     const takePlayerName = async () => {
@@ -173,23 +173,23 @@ const Main = () => {
                     </div>
                 </div>
                 <h2 className='text-center color'>{finishState && finishState !== 'Draw' ? `Winner is ${finishState === playingSign ? playerName : oppenentName}` : ""}</h2>
-        
+
                 {
                     finishState && finishState === 'Draw' && (
                         <h2 className='text-center color'>Match is draw</h2>
                     )
                 }
                 {
-                    finishState?
-                    <div className='text-center my-4'>
-                    <button className='btn btn-info' onClick={(()=>{setPlayonline(false)})}>Play Again</button>
-                    </div>:""
+                    finishState ?
+                        <div className='text-center my-4'>
+                            <button className='btn btn-info' onClick={(() => { setPlayonline(false) })}>Play Again</button>
+                        </div> : ""
                 }
             </div>
-           
-            {showChatBox? <div className='col-md-4 chatbox'>
-              <Chat opponentName={oppenentName} socket={socket} oppoId={oppoId}/>
-            </div>:""}
+
+            {showChatBox ? <div className='col-md-4 chatbox'>
+                <Chat opponentName={oppenentName} socket={socket} oppoId={oppoId} />
+            </div> : ""}
 
         </div>
     )
