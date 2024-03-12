@@ -22,17 +22,15 @@ const allUsers = {};
 
 io.on('connection', (socket) => {
 
-
     allUsers[socket.id] = {
         socket: socket,
         online: true,
+        playing: false,
     }
-
 
     socket.on("request-to-play", (data) => {
         const CurrentPlayer = allUsers[socket.id]
         CurrentPlayer.username = data.username
-             
         let oppenentplayer;
         let oid;
 
@@ -40,32 +38,34 @@ io.on('connection', (socket) => {
             const user = allUsers[i];
             if (user.online && !user.playing && socket.id !== i) {
                 oppenentplayer = user;
-                oid=i
+                oid = i
                 break;
             }
         }
         if (oppenentplayer) {
+            oppenentplayer.playing = true;
+            CurrentPlayer.playing = true;
             CurrentPlayer.socket.emit("oppenent-found", {
                 name: oppenentplayer.username,
-                curr:oid,
+                curr: oid,
                 playingas: 'circle'
             })
 
             oppenentplayer.socket.emit("oppenent-found", {
                 name: CurrentPlayer.username,
-                curr:socket.id,
+                curr: socket.id,
                 playingas: 'cross'
             })
 
             CurrentPlayer.socket.on("playermovefromclient", (data) => {
                 oppenentplayer.socket.emit("playerMoveFromServer", {
-                     ...data
+                    ...data
                 })
             })
 
             oppenentplayer.socket.on("playermovefromclient", (data) => {
                 CurrentPlayer.socket.emit("playerMoveFromServer", {
-                   ...data
+                    ...data
                 })
             })
 
@@ -75,13 +75,14 @@ io.on('connection', (socket) => {
         }
     })
 
-     socket.on("Send-Message",(data)=>{
-        socket.to(data.oppoId).emit("recive-message",{data})
-     })
+    socket.on("Send-Message", (data) => {
+        socket.to(data.oppoId).emit("recive-message", { data })
+    })
 
     socket.on('disconnect', function () {
         const currentuser = allUsers[socket.id]
         currentuser.online = false;
+        currentuser.playing = false;
     }
     )
 });

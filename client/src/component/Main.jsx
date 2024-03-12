@@ -96,7 +96,8 @@ const Main = () => {
         }
         const username = result.value;
         setPlayerName(username)
-        const newsocket = io("https://tic-tac-toe-2-m166.onrender.com", {
+        // https://tic-tac-toe-2-m166.onrender.com
+        const newsocket = io("http://localhost:3000/", {
             autoConnect: true,
         })
         setSocket(newsocket)
