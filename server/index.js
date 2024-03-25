@@ -10,7 +10,6 @@ const server = createServer(app);
 const io = new Server(server, {
     // https://tic-tac-toe-pr.netlify.app/
     cors: {
-        origin: "https://tic-tac-toe-pr.netlify.app/",
         methods: ["GET", "POST"],
         credentials: true
     }
