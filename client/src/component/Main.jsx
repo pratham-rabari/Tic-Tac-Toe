@@ -16,6 +16,8 @@ const Main = () => {
     const [playingSign, setPlayingSign] = useState('')
     const [showChatBox, setShowChatBox] = useState(true)
     const [oppoId, setOppoId] = useState("")
+    const [id, setId] = useState("")
+    const[show,setShow]=useState(false)
 
     const renderFrom = [
         [1, 2, 3],
@@ -61,10 +63,9 @@ const Main = () => {
         }
     }, [gamestate])
 
-
     socket?.on("connect", () => {
         setPlayonline(true)
-    });
+    })
 
     socket?.on("oppenent-found", (data) => {
         setOppenentName(data.name)
@@ -88,6 +89,7 @@ const Main = () => {
         setCurrentPlayer(data.state.sign === 'circle' ? "cross" : "circle");
     })
 
+
     const PlayOnlineClick = async () => {
         const result = await takePlayerName();
 
@@ -95,16 +97,19 @@ const Main = () => {
             return
         }
         const username = result.value;
-        setPlayerName(username)
 
-        const newsocket = io("https://tic-tac-toe-2-m166.onrender.com", {
+        setPlayerName(username)
+        // https://tic-tac-toe-2-m166.onrender.com
+        const newsocket = io(" https://tic-tac-toe-2-m166.onrender.com", {
             autoConnect: true,
         })
-        setSocket(newsocket)
+        setSocket(newsocket)  
         newsocket?.emit("request-to-play", {
-            username, socket
+              username, socket
         })
     }
+
+
     const takePlayerName = async () => {
         const result = await Swal.fire({
             title: "Enter your Name",
@@ -121,12 +126,17 @@ const Main = () => {
     }
 
     if (!playonline) {
-        return <div className='text-center my-4 startbox'>
-            <div className='d-flex justify-content-center align-items-center flex-column box1 my-3'>
-                <h2 className='h2'>Tic-Tac-Toe</h2>
-            </div>
-            <button className='btn text-center btnx my-4' onClick={PlayOnlineClick}>Play Online</button>
-        </div>
+        return (
+            <>
+                <div className='text-center my-4 startbox'>
+                    <div className='d-flex justify-content-center align-items-center flex-column box1 my-3'>
+                        <h2 className='h2'>Tic-Tac-Toe</h2>
+                        <h4 className='text-light'>{id}</h4>
+                    </div>
+                    <button className='btn text-center btnx my-4 mx-2' onClick={PlayOnlineClick}>Play Online</button>
+                </div>
+            </>
+        )
     }
 
     if (playonline && !oppenentName) {
